@@ -8,8 +8,11 @@ sudo apt update
 # Install Java Development Kit (JDK)
 sudo apt install -y default-jdk
 
+# Criar a pasta yaman
+sudo mkdir /opt/yaman
+
 # Download Java 11
-wget -P /opt/yaman/java https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+sudo wget -P /opt/yaman/java https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
 
 # Extract Java 11
 sudo tar -xf /opt/yaman/java/openjdk-11.0.2_linux-x64_bin.tar.gz -C /opt/yaman/java
@@ -18,17 +21,13 @@ sudo tar -xf /opt/yaman/java/openjdk-11.0.2_linux-x64_bin.tar.gz -C /opt/yaman/j
 echo 'export PATH="/opt/yaman/java/jdk-11.0.2/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
-# Add Jenkins repository key
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
-# Add Jenkins repository
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
-# Update system packages again
-sudo apt update
+ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
 
-# Install Jenkins
-sudo apt install -y jenkins
 
 # Start Jenkins service
 sudo systemctl start jenkins
