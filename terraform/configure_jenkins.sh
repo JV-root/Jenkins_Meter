@@ -1,5 +1,15 @@
 # https://pkg.origin.jenkins.io/debian-stable/
 
+# Jenkins Requirements - https://www.jenkins.io/doc/pipeline/tour/getting-started/
+
+# Jenkins Docker - https://www.jenkins.io/doc/book/installing/docker/
+
+
+
+# docker run -d -p 8080:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
+
+# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
 #!/bin/bash
 
 # Update system packages
@@ -44,11 +54,14 @@ echo "Jenkins initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # Download JMeter 5.6.3
-wget -P /ferramentas https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
+sudo wget -P /ferramentas https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
 
 # Extract JMeter
-tar -xf /ferramentas/apache-jmeter-5.6.3.tgz -C /ferramentas
+sudo tar -xf /ferramentas/apache-jmeter-5.6.3.tgz -C /ferramentas
 
 # Add JMeter to PATH
 echo 'export PATH="/ferramentas/apache-jmeter-5.6.3/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+
+
+# /ferramentas/apache-jmeter-5.6.3/bin/jmeter.sh -n -t /ferramentas/scripts/Demo_Blaze/Demo_Blaze.jmx -l /ferramentas/scripts/Demo_Blaze/resultado.jtl -q /ferramentas/scripts/Demo_Blaze/Demo_Blaze.properties

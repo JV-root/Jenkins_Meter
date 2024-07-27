@@ -64,6 +64,7 @@ resource "aws_security_group" "Jenkins_Meter_security_group" {
   }
 }
 
+# ami-04a81a99f5ec58529 é a AMI do Ubuntu 20.04 LTS
 
 resource "aws_instance" "Jenkins_Meter_Server" {
   ami           = "ami-04a81a99f5ec58529"

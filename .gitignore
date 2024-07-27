@@ -5,3 +5,4 @@ terraform/.terraform/providers/registry.terraform.io/hashicorp/null/3.2.2/window
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/Jenkins_Server.pem
+terraform/.terraform.tfstate.lock.info
