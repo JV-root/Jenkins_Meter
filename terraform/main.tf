@@ -67,7 +67,7 @@ resource "aws_security_group" "Jenkins_Meter_security_group" {
 # ami-04a81a99f5ec58529 é a AMI do Ubuntu 20.04 LTS
 
 resource "aws_instance" "Jenkins_Meter_Server" {
-  ami           = "ami-04a81a99f5ec58529"
+  ami           = "ami-094a0231c5ccdf105"
   instance_type = "t2.medium"
   key_name      = "Jenkins_Server"
 
@@ -98,4 +98,45 @@ resource "aws_eip_association" "Jenkins_Meter_Server_eip_association" {
 # Recurso nulo apenas para acionar a criação da instância EC2 e associação do Elastic IP
 resource "null_resource" "Jenkins_Meter_Server_trigger" {
   depends_on = [aws_instance.Jenkins_Meter_Server]
+}
+
+
+
+
+# Criação da instância EC2 - Aplicação Easy Travel
+resource "aws_instance" "Easy_Travel_Instance" {
+  ami           = "ami-0ac2886caf2877ccd"
+  instance_type = "t2.medium"
+  key_name = "Jenkins_Server"
+
+  subnet_id     = aws_subnet.Jenkins_Meter_Subnet.id
+  vpc_security_group_ids = [aws_security_group.Jenkins_Meter_security_group.id]
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_size = 30
+  }
+
+
+  tags = {
+    Name = "Easy_Travel_instance"
+  }
+
+}
+
+
+
+# Criação do Elastic IP
+resource "aws_eip" "Easy_Travel_eip" {
+  vpc = true
+}
+
+# Associação do Elastic IP à instância EC2
+resource "aws_eip_association" "Easy_Travel_eip_association" {
+  instance_id   = aws_instance.Easy_Travel_Instance.id
+  allocation_id = aws_eip.Easy_Travel_eip.id
+}
+
+resource "null_resource" "Easy_Travel_trigger" {
+  depends_on = [aws_instance.Easy_Travel_Instance]
 }

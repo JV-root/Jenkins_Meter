@@ -38,6 +38,8 @@ source ~/.bashrc
     https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
     /etc/apt/sources.list.d/jenkins.list > /dev/null
 
+# install Jenkins
+sudo apt-get install jenkins
 
 # Start Jenkins service
 sudo systemctl start jenkins
