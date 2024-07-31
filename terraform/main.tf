@@ -67,7 +67,7 @@ resource "aws_security_group" "Jenkins_Meter_security_group" {
 # ami-04a81a99f5ec58529 é a AMI do Ubuntu 20.04 LTS
 
 resource "aws_instance" "Jenkins_Meter_Server" {
-  ami           = "ami-094a0231c5ccdf105"
+  ami           = "ami-03507b3027526ccc3"
   instance_type = "t2.medium"
   key_name      = "Jenkins_Server"
 
@@ -106,7 +106,7 @@ resource "null_resource" "Jenkins_Meter_Server_trigger" {
 # Criação da instância EC2 - Aplicação Easy Travel
 resource "aws_instance" "Easy_Travel_Instance" {
   ami           = "ami-0ac2886caf2877ccd"
-  instance_type = "t2.medium"
+  instance_type = "t2.small"
   key_name = "Jenkins_Server"
 
   subnet_id     = aws_subnet.Jenkins_Meter_Subnet.id
@@ -139,4 +139,16 @@ resource "aws_eip_association" "Easy_Travel_eip_association" {
 
 resource "null_resource" "Easy_Travel_trigger" {
   depends_on = [aws_instance.Easy_Travel_Instance]
+}
+
+
+# Outputs
+output "easy_travel_elastic_ip" {
+  description = "The Elastic IP address of the Easy Travel EC2 instance"
+  value       = aws_eip.Easy_Travel_eip.public_ip
+}
+
+output "jenkins_server_elastic_ip" {
+  description = "The Elastic IP address of the Second EC2 instance"
+  value       = aws_eip.JMeter_Server_eip.public_ip
 }
