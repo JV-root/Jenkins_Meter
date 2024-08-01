@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# This script is used to configure the application by performing the following steps:
+# 1. Updates the system packages using 'apt update' and 'apt upgrade' commands.
+# 2. Checks if OpenJDK 11 is already installed. If not, installs it using 'apt install' command.
+# 3. Checks if the Easy Travel application is already downloaded. If not, downloads it using 'wget' command.
+# 4. Executes the Easy Travel application using 'java -jar' command.
+# 5. Changes the directory to 'easytravel-2.0.0-x64/weblauncher/'.
+# 6. Changes the permissions of 'weblauncher.sh' file using 'chmod' command.
+# 7. Launches the 'weblauncher.sh' script in the background using './weblauncher.sh &' command.
+
 # Atualizar os pacotes do sistema
 sudo apt update -y
 sudo apt upgrade -y
