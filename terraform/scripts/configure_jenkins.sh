@@ -37,6 +37,9 @@ sudo systemctl enable jenkins
 # Allow Jenkins to run on port 8080
 sudo ufw allow 8080
 
+# check Jenkins status
+sudo systemctl status jenkins
+
 # Display Jenkins initial admin password
 echo "Jenkins initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -53,3 +56,7 @@ source ~/.bashrc
 
 # Run JMeter script
 # /ferramentas/apache-jmeter-5.6.3/bin/jmeter.sh -n -t /ferramentas/scripts/Demo_Blaze/Demo_Blaze.jmx -l /ferramentas/scripts/Demo_Blaze/resultado.jtl -q /ferramentas/scripts/Demo_Blaze/Demo_Blaze.properties
+
+
+
+# /var/lib/jenkins/ferramentas/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "Script_Modelo_EasyTravel.jmx" -l output.jtl -q "Easy_Travel.properties"

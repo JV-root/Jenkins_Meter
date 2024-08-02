@@ -6,3 +6,4 @@ terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/Jenkins_Server.pem
 terraform/.terraform.tfstate.lock.info
+terraform/scripts/influx_token.txt

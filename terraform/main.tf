@@ -68,8 +68,8 @@ resource "aws_security_group" "Jenkins_Meter_security_group" {
 
 // Create the Jenkins Meter EC2 instance
 resource "aws_instance" "Jenkins_Meter_Server" {
-  ami           = "ami-03507b3027526ccc3"
-  instance_type = "t2.large"
+  ami           = "ami-0a33e4385182de263"
+  instance_type = "t3.large"
   key_name      = "Jenkins_Server"
 
   subnet_id     = aws_subnet.Jenkins_Meter_Subnet.id
@@ -104,7 +104,7 @@ resource "null_resource" "Jenkins_Meter_Server_trigger" {
 // Create the Easy Travel EC2 instance
 resource "aws_instance" "Easy_Travel_Instance" {
   ami           = "ami-0ac2886caf2877ccd"
-  instance_type = "t2.medium"
+  instance_type = "t3.medium"
   key_name = "Jenkins_Server"
 
   subnet_id     = aws_subnet.Jenkins_Meter_Subnet.id

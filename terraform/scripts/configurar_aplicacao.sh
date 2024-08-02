@@ -30,6 +30,13 @@ fi
 # Executar o Easy Travel
 java -jar dynatrace-easytravel-linux-x86_64.jar
 
+
+
+
+
+# --------------------------------------------------------------------------------------------------------------------------------
+# Levando em consideração as snapshots da AWS, para iniciar o Easy Travel, é necessário executar apenas o script abaixo:
+
 # entrar no diretório do easy_travel
 cd easytravel-2.0.0-x64/weblauncher/
 
